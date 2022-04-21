@@ -1,0 +1,23 @@
+<launch>
+  <executable
+    cmd="ign gazebo simulation.sdf" 
+    output="both">
+  </executable>
+
+  <node
+    pkg="ros_ign_bridge"
+    exec="parameter_bridge"
+    name="joint_state_bridge"
+    args="
+      /world/default/model/double_pendulum_with_base0/joint_state@sensor_msgs/msg/JointState[ignition.msgs.Model
+      /model/double_pendulum_with_base0/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V
+  ">
+  </node>
+
+  <node
+    pkg="rviz2"
+    exec="rviz2"
+    name="rviz_node"
+  />
+
+</launch>
